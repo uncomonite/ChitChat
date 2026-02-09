@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ChitChat.ViewModels"
+        xmlns:converters="using:Avalonia.Data.Converters"
+        x:Class="ChitChat.Views.ChatWindow"
+        x:DataType="vm:ChatWindowViewModel"
+        Width="900"
+        Height="600"
+        WindowStartupLocation="CenterOwner"
+        Title="{Binding Topic}">
+
+    <Design.DataContext>
+        <vm:ChatWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="220,*" RowDefinitions="Auto,*,Auto" Margin="20" ColumnSpacing="16" RowSpacing="12">
+        <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Spacing="8">
+            <TextBlock Text="Участники" FontWeight="Bold"/>
+            <ListBox ItemsSource="{Binding Users}" Height="400">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Spacing="8">
+            <TextBlock Text="Тема" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <TextBox Width="320" Text="{Binding Topic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="Изменить" Command="{Binding ChangeTopicCommand}"/>
+                <Button Content="Add User" Command="{Binding AddUserCommand}"/>
+                <Button Content="Leave" Command="{Binding LeaveCommand}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding ErrorMessage}"
+                       Foreground="Tomato"
+                       IsVisible="{Binding ErrorMessage, Converter={x:Static converters:StringConverters.IsNotNullOrEmpty}}"/>
+        </StackPanel>
+
+        <Border Grid.Column="1" Grid.Row="1" Background="#1FFFFFFF" CornerRadius="8" Padding="12">
+            <ListBox Name="MessagesList" ItemsSource="{Binding Messages}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,0,0,8">
+                            <TextBlock Text="{Binding SentAt, StringFormat='{}{0:HH:mm}'}" Foreground="Gray"/>
+                            <TextBlock Text="{Binding SenderName}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Text}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Spacing="8">
+            <TextBox Width="500" Text="{Binding NewMessageText, Mode=TwoWay}" Watermark="Сообщение"/>
+            <Button Content="Send" Command="{Binding SendMessageCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:ChitChat.ViewModels"
+        mc:Ignorable="d"
+        d:DesignWidth="420"
+        d:DesignHeight="320"
+        Width="420"
+        Height="320"
+        WindowStartupLocation="CenterScreen"
+        x:Class="ChitChat.Views.LoginWindow"
+        x:DataType="vm:LoginWindowViewModel"
+        Title="ChitChat Login">
+
+    <StackPanel Spacing="12" Margin="24">
+        <TextBlock Text="Вход" FontSize="22" FontWeight="Bold"/>
+
+        <StackPanel Spacing="6">
+            <TextBlock Text="Логин"/>
+            <TextBox Text="{Binding Username, Mode=TwoWay}" Watermark="Введите логин"/>
+        </StackPanel>
+
+        <StackPanel Spacing="6">
+            <TextBlock Text="Пароль"/>
+            <TextBox Text="{Binding Password, Mode=TwoWay}" Watermark="Введите пароль" PasswordChar="•"/>
+        </StackPanel>
+
+        <CheckBox Content="Запомнить меня" IsChecked="{Binding RememberMe, Mode=TwoWay}"/>
+
+        <TextBlock Text="{Binding ErrorMessage}" Foreground="Red"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+            <Button Content="Cancel" Command="{Binding CancelCommand}"/>
+            <Button Content="Login" Command="{Binding LoginCommand}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

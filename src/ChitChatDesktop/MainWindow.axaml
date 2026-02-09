@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ChitChat.ViewModels"
+        xmlns:converters="using:Avalonia.Data.Converters"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+        x:Class="ChitChat.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ChitChat">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,*" Margin="20" RowSpacing="8">
+        <Grid ColumnDefinitions="*,Auto" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock Text="Чаты" FontSize="22" FontWeight="Bold"/>
+            <Button Grid.Column="1" Content="Employee Finder" Command="{Binding OpenEmployeeFinderCommand}"/>
+        </Grid>
+
+        <TextBlock Grid.Row="1"
+                   Text="{Binding ErrorMessage}"
+                   Foreground="Tomato"
+                   IsVisible="{Binding ErrorMessage, Converter={x:Static converters:StringConverters.IsNotNullOrEmpty}}"/>
+
+        <Border Grid.Row="2" Background="#1FFFFFFF" CornerRadius="8" Padding="12">
+            <ListBox Name="ChatRoomsList"
+                     ItemsSource="{Binding ChatRooms}"
+                     SelectedItem="{Binding SelectedChatRoom, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto" Margin="8">
+                            <TextBlock Text="{Binding Topic}" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Grid.Column="1" Text="{Binding LastMessageAt, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" Foreground="Gray"/>
+                            <TextBlock Grid.Row="1" Text="{Binding LastMessagePreview}" Foreground="Gray"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </Grid>
+
+</Window>

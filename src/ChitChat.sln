@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChitChatDesktop", "ChitChatDesktop\ChitChatDesktop.csproj", "{6E6B77BF-4229-4832-AC63-057D2B3A1CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChitChatApi", "ChitChatApi\ChitChatApi.csproj", "{FEE99D67-4C08-4882-A4A7-542A98D66842}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E6B77BF-4229-4832-AC63-057D2B3A1CCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6B77BF-4229-4832-AC63-057D2B3A1CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6B77BF-4229-4832-AC63-057D2B3A1CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6B77BF-4229-4832-AC63-057D2B3A1CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE99D67-4C08-4882-A4A7-542A98D66842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE99D67-4C08-4882-A4A7-542A98D66842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE99D67-4C08-4882-A4A7-542A98D66842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE99D67-4C08-4882-A4A7-542A98D66842}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

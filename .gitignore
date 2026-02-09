@@ -1,0 +1,61 @@
+# Build outputs
+bin/
+obj/
+*/bin/
+*/obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.rsuser
+*.DotSettings.user
+
+# IDE folders
+.idea/
+.vs/
+.vscode/
+
+# Rider/Resharper
+_ReSharper*/
+*.resharper
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+project.assets.json
+project.nuget.cache
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+
+# Local configuration/secrets
+.env
+.env.*
+appsettings.Development.json
+appsettings.*.Development.json
+
+# Logs and temp
+*.log
+*.tmp
+*.temp
+*.swp
+*.bak
+*.old
+*.orig
+*.pid
+*.cache
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Publish/pack
+publish/
+artifacts/
+TestResults/

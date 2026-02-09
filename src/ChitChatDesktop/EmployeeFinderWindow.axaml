@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ChitChat.ViewModels"
+        x:Class="ChitChat.Views.EmployeeFinderWindow"
+        x:DataType="vm:EmployeeFinderViewModel"
+        Width="720"
+        Height="520"
+        WindowStartupLocation="CenterOwner"
+        Title="Employee Finder">
+
+    <Design.DataContext>
+        <vm:EmployeeFinderViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,*" Margin="20" RowSpacing="12">
+        <TextBlock Text="Employee Finder" FontSize="20" FontWeight="Bold"/>
+
+        <StackPanel Grid.Row="1" Spacing="8">
+            <TextBox Text="{Binding SearchText, Mode=TwoWay}" Watermark="Поиск по имени"/>
+            <ItemsControl ItemsSource="{Binding Departments}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsSelected, Mode=TwoWay}" Margin="0,0,12,0"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+        <Border Grid.Row="2" Background="#1FFFFFFF" CornerRadius="8" Padding="12">
+            <ListBox Name="EmployeesList"
+                     ItemsSource="{Binding FilteredEmployees}"
+                     SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="6,4">
+                            <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding DepartmentName}" Foreground="Gray"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+    </Grid>
+</Window>
